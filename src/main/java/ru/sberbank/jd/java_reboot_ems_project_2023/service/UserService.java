@@ -60,7 +60,7 @@ public class UserService implements UserDetailsService{
             return false;
         }
         user.setRoles(new Role(2, "USER"));
-        user.setGroup(new Group(0L,"Нет группы"));
+//        user.setGroup(new Group(0L,"Нет группы"));
         userRepository.save(user);
         return true;
     }
