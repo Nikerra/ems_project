@@ -1,4 +1,4 @@
-package ru.sberbank.jd.java_reboot_ems_project_2023.exception;
+package main.java.ru.sberbank.jd.java_reboot_ems_project_2023.exception;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

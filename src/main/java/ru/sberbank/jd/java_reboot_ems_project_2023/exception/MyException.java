@@ -1,4 +1,4 @@
-package ru.sberbank.jd.java_reboot_ems_project_2023.exception;
+package main.java.ru.sberbank.jd.java_reboot_ems_project_2023.exception;
 
 import org.springframework.validation.BindException;
 import org.springframework.validation.annotation.Validated;

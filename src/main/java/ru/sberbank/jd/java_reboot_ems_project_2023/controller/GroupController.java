@@ -15,12 +15,14 @@ import ru.sberbank.jd.java_reboot_ems_project_2023.dao.entity.Task;
 import ru.sberbank.jd.java_reboot_ems_project_2023.dao.entity.User;
 import ru.sberbank.jd.java_reboot_ems_project_2023.service.GroupService;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.List;
 
 @Controller
 @RequestMapping("/teacher")
 @RequiredArgsConstructor
+@Transactional
 public class GroupController {
     private final GroupService groupService;
 

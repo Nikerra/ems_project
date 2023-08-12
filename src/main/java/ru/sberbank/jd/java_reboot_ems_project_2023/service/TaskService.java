@@ -3,6 +3,7 @@ package ru.sberbank.jd.java_reboot_ems_project_2023.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.sberbank.jd.java_reboot_ems_project_2023.dao.entity.Task;
+import ru.sberbank.jd.java_reboot_ems_project_2023.dao.entity.User;
 import ru.sberbank.jd.java_reboot_ems_project_2023.repository.TaskRepository;
 
 import java.util.List;
@@ -38,5 +39,9 @@ public class TaskService {
 
     public Optional<Object> getTaskById(Long id) {
         return Optional.of(taskRepository.findById(id));
+    }
+
+    public List<Task> getAllTaskTeacher(User user) {
+        return taskRepository.findAllByTeacher(user);
     }
 }

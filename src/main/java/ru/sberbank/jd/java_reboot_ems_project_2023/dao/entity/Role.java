@@ -16,7 +16,9 @@ public class Role implements GrantedAuthority {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String name;
+
     @Transient
     @OneToMany()
     private Set<User> users;

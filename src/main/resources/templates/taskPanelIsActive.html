@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Task</title>
+    <link th:href="@{/style.css}" rel="stylesheet" href="../static/style.css"/>
+    <style>
+    </style>
 </head>
 <body>
 <h2>Panel Task</h2>
@@ -12,13 +15,31 @@
         <th>ID</th>
         <th>NAME</th>
         <th>RESULT</th>
-        <th>TEACHER</th>
     </tr>
     <tr th:each="task,iterStat : ${activeTask}" th:class="${iterStat.odd}? 'odd'">
         <td th:text="${task.id}">Id</td>
         <td th:text="${task.name}">Name</td>
         <td th:text="${task.result}">Result</td>
-        <td th:text="${task.teacher.name}">Teacher name</td>
+<!--        <td  th:each="teacher,iterStat : ${user}" th:class="${iterStat.odd}? 'odd'"-->
+<!--                th:text="${teacher.username}">Teacher name</td>-->
+    </tr>
+</table>
+<hr>
+<h3>Information on all task</h3>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>RESULT</th>
+        <th>TEACHER ID</th>
+        <th>TEACHER NAME</th>
+    </tr>
+    <tr th:each="task,iterStat : ${allTask}" th:class="${iterStat.odd}? 'odd'">
+        <td th:text="${task.id}">Id</td>
+        <td th:text="${task.name}">Name</td>
+        <td th:text="${task.result}">Result</td>
+        <td th:text="${task.teacher.id}">Teacher id</td>
+        <td th:text="${task.teacher.username}">Teacher name</td>
     </tr>
 </table>
 <hr>

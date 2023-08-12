@@ -28,29 +28,21 @@ public class Task {
 
     @ManyToOne
     @JoinColumn(name = "TEACHER_ID", referencedColumnName = "id", nullable = false)
-    private Teacher teacher;
+    private User teacher;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn (name="group_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn (name="GROUP_ID", referencedColumnName = "id", nullable = false)
     private Group groupTask;
 
     private Boolean isActive;
 
-    public Task(String name, Boolean result, Teacher teacher, Group groupTask, Boolean isActive) {
+    public Task(String name, Boolean result, User teacher, Group groupTask, Boolean isActive) {
 
         this.name = name;
         this.result = result;
         this.teacher = teacher;
         this.groupTask = groupTask;
         this.isActive = isActive;
-    }
-
-    public Group getGroupTask() {
-        return groupTask;
-    }
-
-    public void setGroupTask(Group groupTask) {
-        this.groupTask = groupTask;
     }
 
     @Override

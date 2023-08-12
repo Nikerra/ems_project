@@ -4,7 +4,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link th:href="@{/style.css}" rel="stylesheet" href="../static/style.css"/>
     <style>
-
     </style>
     <meta charset="UTF-8">
     <title>Task</title>
@@ -17,20 +16,70 @@
         <th>ID</th>
         <th>NAME</th>
         <th>RESULT</th>
-        <th>TEACHER</th>
+        <th>RESULT OPTIONS</th>
+        <th>RESULT UPDATE</th>
+        <th>ACTIVE</th>
+        <th>ACTIVE OPTIONS</th>
+        <th>ACTIVE UPDATE</th>
+        <th>GROUP TASK</th>
+        <th>GROUP OPTIONS</th>
+        <th>GROUP UPDATE</th>
+        <th>DELETE</th>
     </tr>
     <tr th:each="task,iterStat : ${allTask}" th:class="${iterStat.odd}? 'odd'">
-        <td th:text="${task.id}">Id</td>
-        <td th:text="${task.name}">Name</td>
-        <td th:text="${task.result}">Result</td>
-        <td th:text="${task.teacher.name}">Teacher name</td>
+            <td th:text="${task.id}">Id</td>
+            <td th:text="${task.name}">Name</td>
+            <td th:text="${task.result}">Result</td>
+            <form th:method="POST" th:action="@{/teacher/taskPanel/updateResult}">
+                <td>
+                    <select type="text" id="result" name="result" required>
+                        <option th:value="true" th:text="true"></option>
+                        <option th:value="false" th:text="false"></option>
+                    </select>
+                </td>
+                <td>
+                    <input type="hidden" name="id" th:value="${task.id}">
+                    <input type="submit" value="Update"/>
+                </td>
+            </form>
+        <td th:text="${task.isActive}">Active</td>
+        <form th:method="POST" th:action="@{/teacher/taskPanel/updateActive}">
+            <td>
+                <select type="text" id="isActive" name="isActive" required>
+                    <option th:value="true" th:text="true"></option>
+                    <option th:value="false" th:text="false"></option>
+                </select>
+            </td>
+            <td>
+                <input type="hidden" name="id" th:value="${task.id}">
+                <input type="submit" value="Update"/>
+            </td>
+        </form>
+
+        <td th:text="${task.groupTask.getName()}">Group task</td>
+        <form th:method="POST" th:action="@{/teacher/taskPanel/updateGroup}">
+            <td>
+                <select type="text" id="idGroup" name="idGroup" required>
+                    <option th:each="group : ${allGroup}"
+                            th:value="${group.id}"
+                            th:text="${group.name}">
+                    </option>
+                </select>
+            </td>
+            <td>
+                <input type="hidden" name="id" th:value="${task.id}">
+                <input type="submit" value="Update">
+            </td>
+        </form>
+            <form th:method="POST" th:action="@{/teacher/taskPanel/delete}">
+                <td>
+                <input type="hidden" name="id" th:value="${task.id}">
+                <input type="submit" value="Delete">
+                </td>
+            </form>
+
     </tr>
 </table>
-<hr>
-<h4>Panel active task</h4>
-<form action="/teacher/taskPanelActive">
-    <button>Панель активных заданий</button>
-</form>
 <hr>
 <h3>Create Task</h3>
 <form method="POST" action="/teacher/taskPanel">
@@ -40,32 +89,7 @@
     <label for="taskResult">Task result:</label>
     <input type="text" id="taskResult" name="result" required/>
     <br/>
-    <label for="taskTeacherID">Teacher ID:</label>
-    <input type="text" id="taskTeacherID" name="teacher" required/>
-    <br/>
     <input type="submit" value="Create"/>
-</form>
-<hr>
-<h3>Update task result</h3>
-<form th:method="POST" th:action="@{/teacher/taskPanel/updateResult}">
-    <label for="taskIDUpdate">ID task:</label>
-    <input type="text" id="taskIDUpdate" name="id" required/>
-    <br/>
-    <label for="taskResultUpdate">Result update:</label>
-    <input type="text" id="taskResultUpdate" name="result" required/>
-    <br/>
-    <input type="submit" value="Update"/>
-</form>
-<hr>
-<h3>Update task active</h3>
-<form th:method="POST" th:action="@{/teacher/taskPanel/updateActive}">
-    <label for="taskID">ID task:</label>
-    <input type="text" id="taskID" name="id" required/>
-    <br/>
-    <label for="taskActiveUpdate">Task active update:</label>
-    <input type="text" id="taskActiveUpdate" name="isActive" required/>
-    <br/>
-    <input type="submit" value="Update"/>
 </form>
 <hr>
 <h3>Update task teacher</h3>
@@ -79,18 +103,15 @@
     <input type="submit" value="Update"/>
 </form>
 <hr>
-<h3>Delete task</h3>
-<form th:method="POST" th:action="@{/teacher/taskPanel/delete}">
-    <label for="id">Delete task on id:</label>
-    <input type="text" id="id" name="id" required/>
-    <input type="submit" value="Delete">
+<h3>Panel all task or active task</h3>
+<form action="/teacher/taskPanelActive">
+    <button>Панель всех заданий и активных заданий</button>
 </form>
 <hr>
 <h3>Panel teacher</h3>
 <form action="/teacher">
     <button>Панель Учителя</button>
 </form>
-
 <hr>
 </body>
 </html>

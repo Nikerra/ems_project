@@ -12,6 +12,7 @@ import ru.sberbank.jd.java_reboot_ems_project_2023.dao.entity.User;
 import ru.sberbank.jd.java_reboot_ems_project_2023.repository.RoleRepository;
 import ru.sberbank.jd.java_reboot_ems_project_2023.repository.StudentRepository;
 import ru.sberbank.jd.java_reboot_ems_project_2023.repository.UserRepository;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
@@ -60,7 +61,7 @@ public class UserService implements UserDetailsService{
             return false;
         }
         user.setRoles(new Role(2, "USER"));
-        user.setGroup(new Group(0L,"Нет группы"));
+//        user.setGroup(new Group(0L,"Нет группы"));
         userRepository.save(user);
         return true;
     }
