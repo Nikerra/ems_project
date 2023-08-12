@@ -9,10 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Getter
 @Setter
@@ -36,20 +33,22 @@ public class User implements UserDetails {
     private String passwordConfirm;
     @ManyToOne(fetch = FetchType.EAGER)
     private Role role;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn (name="group_id")
-    private Group groupUser;
+
+    @OneToMany(mappedBy="user")
+    private List<Group> groups;
+
+    @ManyToMany(mappedBy="students")
+    private Set<Group> groupsParticipant;
 
     @Transient
     private String firstName;
     @Transient
     private String lastName;
 
-    public User(String username, String password, Role role, Group group) {
+    public User(String username, String password, Role role) {
         this.username = username;
         this.password = password;
         this.role = role;
-        this.groupUser  = group;
     }
     @Override
     public String getUsername() {
@@ -94,14 +93,6 @@ public class User implements UserDetails {
 
     public void setRoles(Role role) {
         this.role = role;
-    }
-
-    public Group getGroup() {
-        return groupUser;
-    }
-
-    public void setGroup(Group group) {
-        this.groupUser = group;
     }
 
     @Override

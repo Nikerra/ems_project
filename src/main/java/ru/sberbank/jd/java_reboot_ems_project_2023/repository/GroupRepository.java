@@ -11,5 +11,5 @@ import java.util.List;
 public interface GroupRepository extends JpaRepository<Group, Long> {
     Group getGroupById(Long groupId);
 
-    List<Group> findAllByUsers(User user);
+    List<Group> findAllByStudents(User user);
 }

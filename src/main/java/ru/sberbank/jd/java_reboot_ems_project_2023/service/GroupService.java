@@ -1,10 +1,8 @@
 package ru.sberbank.jd.java_reboot_ems_project_2023.service;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.sberbank.jd.java_reboot_ems_project_2023.dao.entity.Group;
-import ru.sberbank.jd.java_reboot_ems_project_2023.dao.entity.Task;
 import ru.sberbank.jd.java_reboot_ems_project_2023.dao.entity.User;
 import ru.sberbank.jd.java_reboot_ems_project_2023.repository.GroupRepository;
 
@@ -38,6 +36,6 @@ public class GroupService {
     }
 
     public List<Group> getAllGroupsTeacher(User user) {
-        return groupRepository.findAllByUsers(user);
+        return groupRepository.findAllByStudents(user);
     }
 }
