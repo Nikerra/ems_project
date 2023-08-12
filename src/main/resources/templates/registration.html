@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Registration</title>
+    <link th:href="@{/style.css}" rel="stylesheet" href="../static/style.css"/>
+</head>
+<body class="login">
+
+    <form class="form" action="/registration" method="post" th:object="${userForm}">
+
+        <h1 class="form_title">Registration</h1>
+
+        <div class="form_group">
+            <input class="form_input" type="text" id="username" placeholder=" " autofocus="true" th:field="*{username}" />
+            <label class="form_label" for="username">Username:</label>
+        </div>
+
+        <div class="form_group">
+            <input class="form_input" type="password" id="password" placeholder=" " th:field="*{password}" />
+            <label class="form_label" for="password">Password:</label>
+        </div>
+
+        <div class="form_group">
+            <input class="form_input" type="password" id="passwordConfirm" placeholder=" " th:field="*{passwordConfirm}" />
+            <label class="form_label" for="passwordConfirm">Confirm Password:</label>
+        </div>
+
+        <div th:if="${#fields.hasErrors('password') || #fields.hasErrors('passwordConfirm')}">
+            <p class="error" th:errors="*{password}"></p>
+        </div>
+
+        <div>
+            <button class="form_button" type="submit" value="Register" /> Register </button>
+        </div>
+
+        <div th:if="${passwordError != null}">
+            <p class="error" th:text="${passwordError}"></p>
+        </div>
+        <div th:if="${usernameError != null}">
+            <p class="error" th:text="${usernameError}"></p> </div>
+
+        <h4><a href="/">Назад</a></h4>
+
+    </form>
+
+</body>
+</html>

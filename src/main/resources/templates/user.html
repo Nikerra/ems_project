@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Page</title>
+    <link th:href="@{/style.css}" rel="stylesheet" href="../static/style.css"/>
+</head>
+<body>
+<h1>Вы зашли под именем, <span th:text="${currentUser.username}"></span>!</h1>
+<p>Ваш ид: <span th:text="${currentUser.id}"></span></p>
+<p>Ваше имя : <span th:text="${currentUser.username}"></span></p>
+<p>Ваша пароль: <span th:text="${currentUser.password}"></span></p>
+<p>Ваша роль: <span th:text="${currentUser.roles.name}"></span></p>
+</body>
+</html>

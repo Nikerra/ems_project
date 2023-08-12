@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+    <link th:href="@{/style.css}" rel="stylesheet" href="../static/style.css"/>
+</head>
+<body class="login">
+<form class="form">
+    <h1 class="form_title">Ошибка</h1>
+
+    <div class="form_group">
+        <h1 th:text="${error}"></h1>
+    </div>
+
+    <h4><a href="/">Назад</a></h4>
+</form>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.springframework.org/schema/security/tags">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Project EMS</title>
+    <link th:href="@{/style.css}" rel="stylesheet" href="../static/style.css"/>
+</head>
+<body th:style="'background-image: url(../static/SberFon.jpg) no-repeat center center fixed;'">
+
+    <img th:src="@{/SberUniver.png}" src="../static/SberUniver.png" height="30" alt="Сбер Университет" >
+
+    <div>
+        <h1>Education Management System</h1>
+    </div>
+    <sec:authorize access="isAuthenticated()">
+    <!--    <h4><a th:if="${#request.userPrincipal != null}" th:href="@{/logout}">Выйти</a></h4>-->
+        <h2 th:if="${#request.userPrincipal != null}">Здравствуйте, <span  th:text="${currentUser.username}"></span>!</h2>
+    </sec:authorize>
+    <sec:authorize access="!isAuthenticated()">
+        <h2 th:if="${#request.userPrincipal == null}"> Вы не авторизованы</h2>
+    </sec:authorize>
+
+    <div>
+        <sec:authorize access="!isAuthenticated()">
+            <h4><a th:if="${#request.userPrincipal == null}" th:href="@{/login}">Войти</a></h4>
+            <h4><a th:if="${#request.userPrincipal == null}" th:href="@{/registration}">Зарегистрироваться</a></h4>
+        </sec:authorize>
+
+        <sec:authorize access="isAuthenticated()">
+            <h4><a th:if="${#request.userPrincipal != null}" th:href="@{/logout}">Выйти</a></h4>
+        </sec:authorize>
+
+        <div>
+<!--                style="display: inline-block;">-->
+
+            <h4 style="display: inline-block;">
+                <a href="/admin"
+                    style="background-color: #FFCDD2;
+                   display: inline-block;
+                   width: 100px;
+                   /*height: 20px;*/
+                   padding: 30px;">
+                    <img
+                            th:src="@{/Admin2.png}"
+                            src="../src/main/resources/static/Admin2.png"
+                            height="50"
+                    >
+                    <br>Админ
+                </a>
+            </h4>
+<!--            <h4><a href="/admin" ><img th:src="@{/Admin2.png}" src="../src/main/resources/static/Admin2.png" height="50">Админ</a></h4>-->
+            <h4 style="display: inline-block;"><a href="/teacher" style="background-color: #E1BEE7; display: inline-block;
+            width: 100px;
+            /*height: 20px; */
+            padding: 30px;">
+                <img
+                        th:src="@{/Teacher.png}"
+                        src="../src/main/resources/static/Teacher.png"
+                        height="50"
+                >
+                <br>Учитель</a></h4>
+            <h4 style="display: inline-block;">
+                <a href="/student"
+                    style="background-color: #BBDEFB; display: inline-block;
+                  width: 100px;
+                  /*height: 20px; */
+                  padding: 30px;">
+                    <img
+                            th:src="@{/Student.png}"
+                            src="../src/main/resources/static/Student.png"
+                            height="50"
+                    >
+                <br>Студент
+            </a>
+            </h4>
+            <h4 style="display: inline-block;">
+                <a href="/user" style="background-color: aquamarine; display: inline-block;
+                width: 100px;
+                /*height: 20px;*/
+                padding: 30px;">
+                    <img
+                            th:src="@{/User.png}"
+                            src="../src/main/resources/static/User.png"
+                            height="50"
+                    >
+                    <br>Пользователь
+                </a></h4>
+        </div>
+    </div>
+</body>
+</html>

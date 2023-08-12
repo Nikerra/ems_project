@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task</title>
+</head>
+<body>
+<h2>Panel Task</h2>
+<h3>Information on all active task</h3>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>RESULT</th>
+        <th>TEACHER</th>
+    </tr>
+    <tr th:each="task,iterStat : ${activeTask}" th:class="${iterStat.odd}? 'odd'">
+        <td th:text="${task.id}">Id</td>
+        <td th:text="${task.name}">Name</td>
+        <td th:text="${task.result}">Result</td>
+        <td th:text="${task.teacher.name}">Teacher name</td>
+    </tr>
+</table>
+<hr>
+<h3>Panel task</h3>
+<form action="/teacher/taskPanel">
+    <button>Панель заданий</button>
+</form>
+<hr>
+</body>
+</html>

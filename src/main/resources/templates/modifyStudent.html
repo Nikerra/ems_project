@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Students</title>
+</head>
+<body>
+<h2>Все студенты</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Группа</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="student : ${students}">
+        <td th:text="${student.firstName}"></td>
+        <td th:text="${student.lastName}"></td>
+<!--        <td th:text="${student.language}"></td>-->
+        <td><a th:href="@{/edit/{id}(id=${student.id})}">Изменить</a></td>
+        <td><a th:href="@{/delete/{id}(id=${student.id})}">Удалить</a></td>
+    </tr>
+    </tbody>
+</table>
+
+<h2>Добавить студента</h2>
+<form th:action="@{/save}" method="post">
+    <p><label>Имя:</label>
+        <input type="text" name="firstName" />
+    </p>
+    <p>
+        <label>Фамилия:</label>
+        <input type="text" name="lastName"/>
+    </p>
+    <p>
+         <input type="submit" value="Create"/>
+    </p>
+</form>
+</body>
+</html>

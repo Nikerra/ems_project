@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>User List</title>
+    <link th:href="@{/style.css}" rel="stylesheet" href="../static/style.css"/>
+    <style>
+
+    </style>
+</head>
+
+<body class="login">
+
+    <h2>Вы зашли под, <span th:text="${currentUser.username}"></span>!</h2>
+
+    <h1 class="form_title">User List</h1>
+
+<div>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Password</th>
+        <th>Roles</th>
+        <th>RolesUpdate</th>
+        <th>Update</th>
+        <th>Delete</th>
+    </tr>
+
+    <th:block th:each="user : ${allUsers}">
+        <tr>
+            <form action="/admin/update" method="post">
+            <td th:value="${user.id}" th:text="${user.id}"></td>
+            <td th:text="${user.username}"></td>
+            <td th:text="${user.password}"></td>
+            <td th:each="role : ${user.roles}" th:text="${role.name}"></td>
+            <td>
+                <select id="role" name="id_r">
+                    <option th:each="role : ${allRoles}"
+                            th:unless="${role.id == user.role.id}"
+                            th:value="${role.id}"
+                            th:text="${role.name}"
+                    ></option>
+                </select>
+
+            </td>
+            <td>
+                    <input type="hidden" name="id" th:value="${user.id}">
+                    <input type="submit" value="Update">
+                </form>
+            </td>
+
+            <td>
+                <form action="/admin/deleteUser" method="post">
+                    <input type="hidden" name="id" th:value="${user.id}"> <input type="submit" value="Delete">
+                </form>
+            </td>
+        </tr>
+    </th:block>
+</table>
+</div>
+
+<form class="form" action="/admin/registration" method="post" th:object="${userForm}">
+    <h1>New User</h1>
+    <div class="form_group">
+        <input class="form_input" type="text" id="username" placeholder=" " th:field="*{username}" />
+        <label class="form_label" for="username">Username:</label>
+    </div>
+
+    <div class="form_group">
+        <input class="form_input" type="password" id="password" placeholder=" " th:field="*{password}" />
+        <label class="form_label" for="password">Password:</label>
+    </div>
+
+    <div class="form_group">
+        <input class="form_input" type="password" id="passwordConfirm" placeholder=" " th:field="*{passwordConfirm}" />
+        <label class="form_label" for="passwordConfirm">Confirm Password:</label>
+    </div>
+
+    <div th:if="${#fields.hasErrors('password') || #fields.hasErrors('passwordConfirm')}">
+        <p class="error" th:errors="*{password}"></p>
+    </div>
+
+    <div>
+<!--        <input type="submit" value="Register" />-->
+        <button class="form_button" type="submit">Register</button>
+    </div>
+
+    <div th:if="${passwordError != null}">
+        <p class="error" th:text="${passwordError}"></p>
+    </div>
+    <div th:if="${usernameError != null}">
+        <p class="error" th:text="${usernameError}"></p> </div>
+</form>
+<h4><a href="/">Главная страница</a></h4>
+</body>
+
+</html>

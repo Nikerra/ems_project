@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Management</title>
+</head>
+<body>
+<h1>Student Management</h1>
+
+<h2>Create Student</h2>
+<form action="/createStudent" method="post">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required/>
+    <br/>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required/>
+    <br/>
+    <label for="group">Group:</label>
+    <select id="group" name="group.id">
+        <option th:each="group : ${groups}" th:value="${group.id}" th:text="${group.name}"></option>
+    </select>
+    <br/>
+    <input type="submit" value="Create"/>
+</form>
+
+<h2>Students</h2>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Group</th>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr th:each="student : ${students}">
+        <td th:text="${student.name}"></td>
+        <td th:text="${student.email}"></td>
+        <td th:text="${student.group.name}"></td>
+        <td><a th:href="@{/editStudent/{id}(id=${student.id})}">Edit</a></td>
+        <td><a th:href="@{/deleteStudent/{id}(id=${student.id})}">Delete</a></td>
+    </tr>
+</table>
+
+<h2>Create Group</h2>
+<form action="/createGroup" method="post">
+    <label for="groupName">Group Name:</label>
+    <input type="text" id="groupName" name="name" required/>
+    <br/>
+    <input type="submit" value="Create"/>
+</form>
+<h2>Groups</h2>
+<table>
+    <tr>
+        <th>id</th>
+        <th>name</th>
+
+        <th></th>
+        <th></th>
+    </tr>
+    <tr th:each="group : ${groups}">
+        <td th:text="${group.id}"></td>
+        <td th:text="${group.name}"></td>
+
+        <td><a th:href="@{/editGroup/{id}(id=${group.id})}">Edit</a></td>
+        <td><a th:href="@{/deleteGroup/{id}(id=${group.id})}">Delete</a></td>
+    </tr>
+</table>
+</body>
+</html>

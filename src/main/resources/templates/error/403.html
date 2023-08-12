@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Access is denied</title>
+    <link th:href="@{/style.css}" rel="stylesheet" href="../../static/style.css"/>
+</head>
+<body class="login">
+<form class="form">
+    <h1 class="form_title">403 - Access is denied</h1>
+
+    <div class="form_group" th:inline="text">
+        Hello '[[${#httpServletRequest.remoteUser}]]',
+        you do not have permission to access this page.
+    </div>
+
+    <div class="form_group" th:inline="text">
+        Тебе '[[${#httpServletRequest.remoteUser}]]',
+        сюда нельзя!
+    </div>
+
+    <h4><a href="/">Назад</a></h4>
+
+</form>
+</body>
+</html>
