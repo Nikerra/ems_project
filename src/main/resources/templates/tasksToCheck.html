@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.springframework.org/schema/security/tags">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/style.css}" rel="stylesheet" href="../static/style.css"/>
+    <title>Task</title>
+</head>
+
+<body class="login">
+
+<sec:authorize access="isAuthenticated()">
+    <h2 th:if="${#request.userPrincipal != null}">Здравствуйте, <span  th:text="${currentUser.username}"></span>!</h2>
+</sec:authorize>
+
+<sec:authorize access="!isAuthenticated()">
+    <h2 th:if="${#request.userPrincipal == null}"> Вы не авторизованы</h2>
+</sec:authorize>
+
+<sec:authorize access="!isAuthenticated()">
+    <h4><a th:if="${#request.userPrincipal == null}" th:href="@{/login}">Войти</a></h4>
+    <h4><a th:if="${#request.userPrincipal == null}" th:href="@{/registration}">Зарегистрироваться</a></h4>
+</sec:authorize>
+
+<h1 class="form_title">Панель заданий на проверку</h1>
+
+<div class="form_group">
+    <form action="/teacher">
+        <button class="form_button_panel_teacher">Панель Учителя</button>
+    </form>
+</div>
+
+<div class="form_group">
+
+<h3>Список заданий на проверку</h3>
+<table>
+    <tr>
+        <th>id</th>
+        <th>Задача</th>
+        <th>Ответ</th>
+        <th>Студент</th>
+        <th>Группа студента</th>
+        <th>Результат(True/False)</th>
+        <th>Изменить результат</th>
+    </tr>
+
+    <tr th:each="taskResp : ${taskResponse}" >
+        <td th:text="${taskResp.id}"></td>
+        <td th:text="${taskResp.task.name}"></td>
+        <td th:text="${taskResp.answer}"></td>
+        <td th:text="${taskResp.user.firstName + ' ' + taskResp.user.lastName}"></td>
+        <td th:text="${taskResp.user.groupUser.name}"></td>
+        <td th:text="${taskResp.result}" th:style="${taskResp.result == true ? 'color:green' : taskResp.result == false ? 'color:red' : ''}"></td>
+
+        <td>
+            <form action="/teacher/tasksToCheck" method="post">
+                <select id="res_id" name="res_id">
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select>
+                <input type="hidden" name="id" th:value="${taskResp.id}">
+                <button type="submit">Отправить</button>
+            </form>
+        </td>
+    </tr>
+</table>
+</div>
+
+<div class="form_group">
+    <h1 class="form_title">Проверенные задачи</h1>
+<table>
+    <tr>
+        <th>id</th>
+        <th>Задача</th>
+        <th>Ответ</th>
+        <th>Студент</th>
+        <!--        <th>Группа студента</th>-->
+        <th>Результат(True/False)</th>
+        <th>Изменить результат</th>
+    </tr>
+
+    <tr th:each="taskResp : ${taskResponse}" >
+        <td th:text="${taskResp.id}"></td>
+        <td th:text="${taskResp.task.name}"></td>
+        <td th:text="${taskResp.answer}"></td>
+        <td th:text="${taskResp.user.firstName + ' ' + taskResp.user.lastName}"></td>
+        <!--        <td th:text="${taskResp.user.groupUser.name}"></td>-->
+        <td th:text="${taskResp.result}" th:style="${taskResp.result == true ? 'color:green' : taskResp.result == false ? 'color:red' : ''}"></td>
+
+        <td>
+            <form action="/teacher/tasksToCheck" method="post">
+                <select id="res" name="res_id">
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select>
+                <input type="hidden" name="id" th:value="${taskResp.id}">
+                <button type="submit">Отправить</button>
+            </form>
+        </td>
+    </tr>
+</table>
+</div>
+
+</body>
+</html>

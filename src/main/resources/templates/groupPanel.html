@@ -1,88 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <link th:href="@{/style.css}" rel="stylesheet" href="../static/style.css"/>
-  <style>
-
-  </style>
-  <meta charset="UTF-8">
-  <title>Group</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link th:href="@{/style.css}" rel="stylesheet" href="../static/style.css"/>
+    <title>Group</title>
 </head>
-<body>
-<h2>Panel group</h2>
-<h3>Information on all group</h3>
-<table>
-  <tr>
-    <th>ID</th>
-    <th>NAME</th>
-  </tr>
-  <tr th:each="group,iterStat : ${allGroup}" th:class="${iterStat.odd}? 'odd'">
-    <td th:text="${group.id}">Id</td>
-    <td th:text="${group.name}">Name</td>
-    <!--<td th:each="task : ${group.tasks}" th:text="${task.name}">Task</td>
-    <td th:each="user : ${group.users}" th:text="${user.username}">User name</td> -->
-  </tr>
-</table>
-<hr>
-<h4>Panel active task</h4>
-<form action="/teacher/taskPanelActive">
-  <button>Панель активных заданий</button>
-</form>
-<hr>
-<h3>Create group</h3>
-<form method="POST" action="/teacher/groupPanel">
-  <label for="groupName">Group name:</label>
-  <input type="text" id="groupName" name="name" required/>
-  <br/>
-  <input type="submit" value="Create"/>
-</form>
-<hr>
-<h3>Update task result</h3>
-<form th:method="POST" th:action="@{/teacher/taskPanel/updateResult}">
-  <label for="taskIDUpdate">ID task:</label>
-  <input type="text" id="taskIDUpdate" name="id" required/>
-  <br/>
-  <label for="taskResultUpdate">Result update:</label>
-  <input type="text" id="taskResultUpdate" name="result" required/>
-  <br/>
-  <input type="submit" value="Update"/>
-</form>
-<hr>
-<h3>Update task active</h3>
-<form th:method="POST" th:action="@{/teacher/taskPanel/updateActive}">
-  <label for="taskID">ID task:</label>
-  <input type="text" id="taskID" name="id" required/>
-  <br/>
-  <label for="taskActiveUpdate">Task active update:</label>
-  <input type="text" id="taskActiveUpdate" name="isActive" required/>
-  <br/>
-  <input type="submit" value="Update"/>
-</form>
-<hr>
-<h3>Update task teacher</h3>
-<form th:method="POST" th:action="@{/teacher/taskPanel/updateTeacher}">
-  <label for="taskUpdateID">ID task for update:</label>
-  <input type="text" id="taskUpdateID" name="id" required/>
-  <br/>
-  <label for="taskTeacherUpdate">ID teacher for update:</label>
-  <input type="text" id="taskTeacherUpdate" name="teacher" required/>
-  <br/>
-  <input type="submit" value="Update"/>
-</form>
-<hr>
-<h3>Delete task</h3>
-<form th:method="POST" th:action="@{/teacher/taskPanel/delete}">
-  <label for="id">Delete task on id:</label>
-  <input type="text" id="id" name="id" required/>
-  <input type="submit" value="Delete">
-</form>
-<hr>
-<h3>Panel teacher</h3>
-<form action="/teacher">
-  <button>Панель Учителя</button>
-</form>
 
-<hr>
+<body class="login">
+
+<h1 class="form_title">Панель групп</h1>
+
+<div class="form_group">
+    <form class="form" action="/teacher">
+        <button class="form_button_panel_teacher">Панель Учителя</button>
+    </form>
+</div>
+
+<h3>Information on all groups</h3>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>DELETE</th>
+    </tr>
+    <tr th:each="group,iterStat : ${allGroups}" th:class="${iterStat.odd}? 'odd'">
+        <td th:text="${group.id}">Id</td>
+        <td th:text="${group.name}">Name</td>
+        <form th:method="POST" th:action="@{/teacher/groupPanel/delete}">
+            <td>
+                <input type="hidden" name="id" th:value="${group.id}">
+                <input type="submit" value="Delete"/>
+            </td>
+        </form>
+    </tr>
+</table>
+
+<form class="form" method="POST" action="/teacher/groupPanel">
+    <h3>Create group</h3>
+    <div class="form_group">
+        <input class="form_input" placeholder=" " type="text" id="groupName" name="name" required/>
+        <label class="form_label" for="groupName">Group name:</label>
+    </div>
+    <input class="form_button" type="submit" value="Create"/>
+</form>
+<h4><a href="/">Главная страница</a></h4>
 </body>
 </html>

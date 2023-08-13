@@ -5,7 +5,7 @@
     <link th:href="@{/style.css}" rel="stylesheet" href="../static/style.css"/>
     <title>Teacher</title>
 </head>
-<body>
+<body class="login">
     <sec:authorize access="isAuthenticated()">
         <h2 th:if="${#request.userPrincipal != null}">Здравствуйте, <span  th:text="${currentUser.username}"></span>!</h2>
     </sec:authorize>
@@ -14,27 +14,44 @@
         <h2 th:if="${#request.userPrincipal == null}"> Вы не авторизованы</h2>
     </sec:authorize>
 
-    <div>
-        <sec:authorize access="!isAuthenticated()">
-            <h4><a th:if="${#request.userPrincipal == null}" th:href="@{/login}">Войти</a></h4>
-            <h4><a th:if="${#request.userPrincipal == null}" th:href="@{/registration}">Зарегистрироваться</a></h4>
-        </sec:authorize>
+    <sec:authorize access="!isAuthenticated()">
+        <h4><a th:if="${#request.userPrincipal == null}" th:href="@{/login}">Войти</a></h4>
+        <h4><a th:if="${#request.userPrincipal == null}" th:href="@{/registration}">Зарегистрироваться</a></h4>
+    </sec:authorize>
 
-        <table>
+    <h1 class="form_title">Панель Учителя</h1>
+    <table>
+
+        <div class="form_group">
             <form action="/teacher/taskPanel">
-                <button>Панель заданий</button>
+                <button class="form_button_panel_task">Мои задания</button>
             </form>
+        </div>
 
+        <div class="form_group">
+            <form action="/teacher/tasksToCheck">
+                <button class="form_button_check_task">Проверить задания</button>
+            </form>
+        </div>
+
+        <div class="form_group">
+            <form action="/teacher/taskPanelIsActive">
+                <button class="form_button_panel_all_task">Задания всех учителей</button>
+            </form>
+        </div>
+
+        <div class="form_group">
             <form action="/teacher/groupPanel">
-                <button>Панель групп</button>
+                <button class="form_button_panel_group">Список групп</button>
             </form>
-        </table>
+        </div>
 
-        <sec:authorize access="isAuthenticated()">
-            <h4><a th:if="${#request.userPrincipal != null}" th:href="@{/logout}">Выйти</a></h4>
-        </sec:authorize>
-    </div>
-<br>
-<h4><a href="/">Главная</a></h4>
+
+    </table>
+
+    <sec:authorize access="isAuthenticated()">
+        <h4><a th:if="${#request.userPrincipal != null}" th:href="@{/logout}">Выйти</a></h4>
+    </sec:authorize>
+
+    <h4><a href="/">Главная страница</a></h4>
 </body>
-</html>

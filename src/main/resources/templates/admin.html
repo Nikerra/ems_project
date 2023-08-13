@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.springframework.org/schema/security/tags">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -14,86 +14,106 @@
 
     <h2>Вы зашли под, <span th:text="${currentUser.username}"></span>!</h2>
 
-    <h1 class="form_title">User List</h1>
+    <h1 class="form_title">Зарегистрированные пользователи</h1>
 
-<div>
+<div class="form_group">
 <table>
     <tr>
-        <th>ID</th>
-        <th>Username</th>
-        <th>Password</th>
-        <th>Roles</th>
-        <th>RolesUpdate</th>
-        <th>Update</th>
-        <th>Delete</th>
+        <th>Номер</th>
+        <th>Логин</th>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Роль</th>
+        <th>Группа</th>
+        <th>Обновить группу</th>
+        <th>Обновить роль</th>
+        <th>Обновить</th>
+        <th>Удалить</th>
     </tr>
 
     <th:block th:each="user : ${allUsers}">
         <tr>
             <form action="/admin/update" method="post">
-            <td th:value="${user.id}" th:text="${user.id}"></td>
-            <td th:text="${user.username}"></td>
-            <td th:text="${user.password}"></td>
-            <td th:each="role : ${user.roles}" th:text="${role.name}"></td>
-            <td>
-                <select id="role" name="id_r">
-                    <option th:each="role : ${allRoles}"
-                            th:unless="${role.id == user.role.id}"
-                            th:value="${role.id}"
-                            th:text="${role.name}"
-                    ></option>
-                </select>
+                <td th:value="${user.id}" th:text="${user.id}"></td>
+                <td th:text="${user.username}"></td>
+                <td th:text="${user.firstName}"></td>
+                <td th:text="${user.lastName}"></td>
+                <td th:each="role : ${user.role}" th:text="${role.name}"></td>
+                <td th:each="group : ${user.groupUser}" th:text="${group.name}"></td>
+                <td>
+                    <select id="group" name="groupId">
+                        <option th:each="group : ${allGroups}"
+                                th:value="${group.id}"
+                                th:text="${group.name}">
 
-            </td>
-            <td>
+                        </option>
+                    </select>
+
+                </td>
+                <td>
+                    <select id="role" name="roleId">
+                        <option th:each="role : ${allRoles}" th:text="${role.name}"
+                                th:value="${role.id}">
+
+                        </option>
+                    </select>
+                </td>
+                <td>
                     <input type="hidden" name="id" th:value="${user.id}">
                     <input type="submit" value="Update">
-                </form>
-            </td>
+                </td>
+            </form>
 
             <td>
                 <form action="/admin/deleteUser" method="post">
-                    <input type="hidden" name="id" th:value="${user.id}"> <input type="submit" value="Delete">
+                    <input type="hidden" name="id" th:value="${user.id}">
+                    <input th:if="${user.id > 1}" type="submit" value="Delete">
                 </form>
             </td>
         </tr>
     </th:block>
 </table>
 </div>
+<div class="form_group">
+    <h1 class="form_title">Заявки на поступление</h1>
+    <table>
+        <tr>
+            <th>Номер</th>
+            <th>Логин</th>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Текст</th>
+            <th>Группа</th>
+            <th>Результат</th>
+            <th>Обновить</th>
+        </tr>
 
-<form class="form" action="/admin/registration" method="post" th:object="${userForm}">
-    <h1>New User</h1>
-    <div class="form_group">
-        <input class="form_input" type="text" id="username" placeholder=" " th:field="*{username}" />
-        <label class="form_label" for="username">Username:</label>
-    </div>
+        <tr th:each="Resp : ${allResp}" >
 
-    <div class="form_group">
-        <input class="form_input" type="password" id="password" placeholder=" " th:field="*{password}" />
-        <label class="form_label" for="password">Password:</label>
-    </div>
-
-    <div class="form_group">
-        <input class="form_input" type="password" id="passwordConfirm" placeholder=" " th:field="*{passwordConfirm}" />
-        <label class="form_label" for="passwordConfirm">Confirm Password:</label>
-    </div>
-
-    <div th:if="${#fields.hasErrors('password') || #fields.hasErrors('passwordConfirm')}">
-        <p class="error" th:errors="*{password}"></p>
-    </div>
-
-    <div>
-<!--        <input type="submit" value="Register" />-->
-        <button class="form_button" type="submit">Register</button>
-    </div>
-
-    <div th:if="${passwordError != null}">
-        <p class="error" th:text="${passwordError}"></p>
-    </div>
-    <div th:if="${usernameError != null}">
-        <p class="error" th:text="${usernameError}"></p> </div>
-</form>
-<h4><a href="/">Главная страница</a></h4>
+            <td th:text="${Resp.user.id}"></td>
+            <td th:text="${Resp.user.username}"></td>
+            <td th:text="${Resp.user.firstName}"></td>
+            <td th:text="${Resp.user.lastName}"></td>
+            <td th:text="${Resp.text}"></td>
+            <td th:text="${Resp.group.name}"></td>
+            <td th:text="${Resp.result}" th:style="${Resp.result == true ? 'color:green' : Resp.result == false ? 'color:red' : ''}"></td>
+            <td>
+                <form action="/admin/tasksToCheck" method="post">
+                    <select id="res" name="res_id">
+                        <option value="true">True</option>
+                        <option value="false">False</option>
+                    </select>
+                    <input type="hidden" name="id" th:value="${Resp.id}">
+                    <button  type="submit">Отправить</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>
+    <h4><a href="/admin/createUser">Зарегистрировать Пользователя</a></h4>
+    <h4><a href="/">Главная страница</a></h4>
+    <sec:authorize access="isAuthenticated()">
+        <h4><a th:if="${#request.userPrincipal != null}" th:href="@{/logout}">Выйти</a></h4>
+    </sec:authorize>
 </body>
-
 </html>

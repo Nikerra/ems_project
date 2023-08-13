@@ -1,15 +1,58 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.springframework.org/schema/security/tags">
 <head>
     <meta charset="UTF-8">
     <title>User Page</title>
     <link th:href="@{/style.css}" rel="stylesheet" href="../static/style.css"/>
 </head>
-<body>
-<h1>Вы зашли под именем, <span th:text="${currentUser.username}"></span>!</h1>
-<p>Ваш ид: <span th:text="${currentUser.id}"></span></p>
-<p>Ваше имя : <span th:text="${currentUser.username}"></span></p>
-<p>Ваша пароль: <span th:text="${currentUser.password}"></span></p>
-<p>Ваша роль: <span th:text="${currentUser.roles.name}"></span></p>
+
+<body class="login">
+
+    <h1 class="form_title">Заявки на поступление</h1>
+
+    <div class="form_group">
+        <h2>Вы зашли под именем, <span th:text="${currentUser.username}"></span>!</h2>
+        <p>Ваш ид: <span th:text="${currentUser.id}"></span></p>
+        <p>Ваше имя : <span th:text="${currentUser.username}"></span></p>
+        <p>Ваша роль: <span th:text="${currentUser.role.name}"></span></p>
+    </div>
+
+    <h1 class="form_title">Мои заявки на поступление</h1>
+    <div class="form_group">
+    <table>
+        <tr>
+            <th>Сообщение</th>
+            <th>Группа</th>
+            <th>Результат</th>
+        </tr>
+
+        <tr th:each="Resp : ${allResp}" >
+            <td th:text="${Resp.text}"></td>
+            <td th:text="${Resp.group.name}"></td>
+            <td th:text="${Resp.result}" th:style="${Resp.result == true ? 'color:green' : Resp.result == false ? 'color:red' : ''}"></td>
+        </tr>
+    </table>
+</div>
+<form class="form" th:action="@{/user}" method="post">
+    <h1 class="form_title">Создать заявку</h1>
+    <div class="form_group">
+        <input class="form_input" placeholder=" " type="text" id="text" name="text" required>
+        <label class="form_label" for="text">Сообщение:</label>
+    </div>
+    <div class="form_group">
+        <label class="form_label" for="group">Группа:</label>
+        <select id="group" name="group">
+            <option th:each="group : ${allGroup}" th:value="${group.id}" th:text="${group.name}"></option>
+    </select>
+    </div>
+    <div class="form_group">
+        <button class="form_button" type="submit">Отправить</button>
+    </div>
+</form>
+<sec:authorize access="isAuthenticated()">
+    <h4><a th:if="${#request.userPrincipal != null}" th:href="@{/logout}">Выйти</a></h4>
+</sec:authorize>
+<h4><a href="/">Главная страница</a></h4>
+
 </body>
 </html>

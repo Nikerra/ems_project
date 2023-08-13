@@ -1,69 +1,63 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.springframework.org/schema/security/tags">
 <head>
     <meta charset="UTF-8">
     <title>Personal account</title>
+    <link th:href="@{/style.css}" rel="stylesheet" href="../static/style.css"/>
 </head>
-<body>
 
-<h1>Вы зашли под именем, <span th:text="${currentUser.username}"></span>!</h1>
+<body class="login">
 
-<h2>Мои данные</h2>
-<p>Ид: <span th:text="${currentUser.id}"></span></p>
-<p>Логин : <span th:text="${currentUser.username}"></span></p>
-<!--<p>Ваша пароль: <span th:text="${currentUser.password}"></span></p>-->
-<p>Роль: <span th:text="${currentUser.roles.name}"></span></p>
+    <h2 >Вы зашли под именем, <span th:text="${currentUser.username}"></span>!</h2>
 
-<!--<form action="/student/update" method="post">-->
-<!--    <label for="firstName">Имя:</label>-->
-<!--    <input type="text" id="firstName" th:field="*{firstName}"/>-->
-<!--    <label for="firstName">Фамилия:</label>-->
-<!--    <input type="text" id="lastName" th:field="*{lastName}"/>-->
 
-<!--&lt;!&ndash;    <p>Имя: <span th:text="${currentUser.firstName}"></span></p>&ndash;&gt;-->
-<!--&lt;!&ndash;    <p>Фамилия: <span th:text="${currentUser.lastName}"></span></p>&ndash;&gt;-->
-<!--    <input type="hidden" name="id" th:value="${currentUser.id}">-->
-<!--    <input type="submit" value="Update">-->
-<!--</form>-->
+    <div class="form_group">
+        <h1 class="form_title">Мои данные</h1>
+        <p>Ид: <span th:text="${currentUser.id}"></span></p>
+        <p>Логин : <span th:text="${currentUser.username}"></span></p>
+        <p>Имя : <span th:text="${currentUser.firstName}"></span></p>
+        <p>Фамилия : <span th:text="${currentUser.lastName}"></span></p>
+        <p>Роль: <span th:text="${currentUser.role.name}"></span></p>
+        <p>Группа: <span th:text="${currentUser.groupUser.name}"></span></p>
+    </div>
 
-<p>Группа: <span th:text="${currentUser.group.name}"></span></p>
-<!--<p>Задача: <span th:text="${groupTask.task.name}"></span></p>-->
-<!--<p>Учитель: <span th:text="${groupTask.task.teacher.name}"></span></p>-->
-<!--<p>Актив задача: <span th:text="${groupTask.task.isActive}"></span></p>-->
-<!--<p>Результат: <span th:text="${groupTask.task.result}"></span></p>-->
-<!--<table>-->
-<!--    <thead>-->
-<!--    <tr>-->
-<!--        <th>Имя</th>-->
-<!--        <th>Почта</th>-->
-<!--        <th>Группа</th>-->
-<!--    </tr>-->
-<!--    </thead>-->
-<!--    <tbody>-->
-<!--    <tr th:each="student : ${students}">-->
-<!--        <td th:text="${student.name}"></td>-->
-<!--        <td th:text="${student.email}"></td>-->
-<!--        <td th:text="${student.group.name}"></td>-->
-<!--    </tr>-->
-<!--    </tbody>-->
-<!--</table>-->
-<!--<h2>Мои задания</h2>-->
-<!--<table>-->
-<!--    <thead>-->
-<!--    <tr>-->
-<!--        <th>Имя</th>-->
-<!--        <th>Почта</th>-->
-<!--        <th>Группа</th>-->
-<!--    </tr>-->
-<!--    </thead>-->
-<!--    <tbody>-->
-<!--    <tr th:each="student : ${students}">-->
-<!--        <td th:text="${student.name}"></td>-->
-<!--        <td th:text="${student.email}"></td>-->
-<!--        <td th:text="${student.group.name}"></td>-->
-<!--    </tr>-->
-<!--    </tbody>-->
-<!--</table>-->
-<h4><a href="/">Главная</a></h4>
+
+    <div class="form_group">
+        <h1 class="form_title">Мои задачи</h1>
+        <table>
+            <thead>
+            <tr>
+                <th>Задача</th>
+                <th>Ответ</th>
+                <th>Результат</th>
+                <th>Отправить ответ</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="task : ${tasks}">
+                <td th:text="${task.name}"></td>
+                <td> <span th:each="response : ${allTasksResponse}" th:if="${response.task.id == task.id}">
+                         <span th:text="${response.answer}"></span>
+                     </span>
+                </td>
+                <td> <span th:each="response : ${allTasksResponse}" th:if="${response.task.id == task.id}">
+                         <span th:text="${response.result}" th:style="${response.result == true ? 'color:green' : response.result == false ? 'color:red' : ''}"></span>
+                     </span>
+                </td>
+                <td>
+                    <form method="post" th:action="@{/student/response}">
+                        <input type="hidden" name="taskId" th:value="${task.id}" />
+                        <input type="text" name="answer" />
+                        <button type="submit">Send answer</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <sec:authorize access="isAuthenticated()">
+        <h4><a th:if="${#request.userPrincipal != null}" th:href="@{/logout}">Выйти</a></h4>
+    </sec:authorize>
+    <h4><a href="/">Главная страница</a></h4>
 </body>
 </html>

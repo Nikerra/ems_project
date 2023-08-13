@@ -58,6 +58,7 @@ table, th, td {
     border: 1px solid lightgray;
     border-collapse: collapse;
     padding: 8px;
+    font-family: Georgia, Times, serif;
 }
 
 .form {
@@ -81,7 +82,6 @@ table, th, td {
     padding: 10px 20px;
     border: none; /* Без границы блока. */
     border-radius: 5px; /* Радиус закругления */
-    /*font-family: sans-serif;*/
     font-family: Georgia, Times, serif;
     letter-spacing: 1px;
     font-size: 14px;
@@ -91,26 +91,123 @@ table, th, td {
     cursor: pointer; /* Тип курсора при наведение */
     transition: 0.3s; /* transition позволяет делать плавные переходы между двумя значениями какого-либо CSS свойства */
 }
-
-.form_button_index {
-    padding: 50px 50px;
-    border: none; /* Без границы блока. */
-    border-radius: 5px; /* Радиус закругления */
-    /*font-family: sans-serif;*/
-    font-family: Georgia, Times, serif;
-    letter-spacing: 1px;
-    font-size: 14px;
-    color :#fff ; /* Цвет текста */
-    background-color: #0071f0; /* Цвет фона */
-    outline: none; /* Внешней границы элемента */
-    cursor: pointer; /* Тип курсора при наведение */
-    transition: 0.3s; /* transition позволяет делать плавные переходы между двумя значениями какого-либо CSS свойства */
-}
-
-.form_button_index:focus,
-.form_button_index:hover{
+.form_button:focus,
+.form_button:hover{
     background-color: rgba(0, 113, 240, 0.7); /* RGBA Цвет фона и значение прозрачности. */
 }
+
+.form_button_panel_teacher {
+    padding: 10px 20px;
+    width: 400px;
+    border: none; /* Без границы блока. */
+    border-radius: 5px; /* Радиус закругления */
+    font-family: Georgia, Times, serif;
+    letter-spacing: 1px;
+    font-size: 18px;
+    color :#fff ; /* Цвет текста */
+    background-color: rgb(246, 120, 8); /* Цвет фона */
+    outline: none; /* Внешней границы элемента */
+    cursor: pointer; /* Тип курсора при наведение */
+    transition: 0.3s; /* transition позволяет делать плавные переходы между двумя значениями какого-либо CSS свойства */
+}
+.form_button_panel_teacher:focus,
+.form_button_panel_teacher:hover{
+    background-color: rgb(245, 155, 85); /* RGBA Цвет фона и значение прозрачности. */
+}
+
+.form_button_panel_task {
+    padding: 10px 20px;
+    width: 400px;
+    border: none; /* Без границы блока. */
+    border-radius: 5px; /* Радиус закругления */
+    font-family: Georgia, Times, serif;
+    letter-spacing: 1px;
+    font-size: 18px;
+    color :#fff ; /* Цвет текста */
+    background-color: rgb(55, 145, 55); /* Цвет фона */
+    outline: none; /* Внешней границы элемента */
+    /*cursor: pointer;*/ /* Тип курсора при наведение */
+    transition: 0.3s; /* transition позволяет делать плавные переходы между двумя значениями какого-либо CSS свойства */
+}
+.form_button_panel_task:focus,
+.form_button_panel_task:hover{
+    background-color: rgb(122, 189, 122); /* RGBA Цвет фона и значение прозрачности. */
+}
+
+.form_button_panel_group {
+    padding: 10px 20px;
+    width: 400px;
+    border: none; /* Без границы блока. */
+    border-radius: 5px; /* Радиус закругления */
+    font-family: Georgia, Times, serif;
+    letter-spacing: 1px;
+    font-size: 18px;
+    color :#fff ; /* Цвет текста */
+    background-color: rgb(20, 151, 169); /* Цвет фона */
+    outline: none; /* Внешней границы элемента */
+    /*cursor: pointer;*/ /* Тип курсора при наведение */
+    transition: 0.3s; /* transition позволяет делать плавные переходы между двумя значениями какого-либо CSS свойства */
+}
+.form_button_panel_group:focus,
+.form_button_panel_group:hover{
+    background-color: rgb(56, 185, 203); /* RGBA Цвет фона и значение прозрачности. */
+}
+
+.form_button_check_task {
+    padding: 10px 20px;
+    width: 400px;
+    border: none; /* Без границы блока. */
+    border-radius: 5px; /* Радиус закругления */
+    font-family: Georgia, Times, serif;
+    letter-spacing: 1px;
+    font-size: 18px;
+    color :#fff ; /* Цвет текста */
+    background-color: rgb(149, 17, 48); /* Цвет фона */
+    outline: none; /* Внешней границы элемента */
+    /*cursor: pointer;*/ /* Тип курсора при наведение */
+    transition: 0.3s; /* transition позволяет делать плавные переходы между двумя значениями какого-либо CSS свойства */
+}
+.form_button_check_task:focus,
+.form_button_check_task:hover{
+    background-color: rgb(182, 67, 95); /* RGBA Цвет фона и значение прозрачности. */
+}
+
+.form_button_panel_all_task {
+    padding: 10px 20px;
+    width: 400px;
+    border: none; /* Без границы блока. */
+    border-radius: 5px; /* Радиус закругления */
+    font-family: Georgia, Times, serif;
+    letter-spacing: 1px;
+    font-size: 18px;
+    color :#fff ; /* Цвет текста */
+    background-color: rgb(116, 40, 231); /* Цвет фона */
+    outline: none; /* Внешней границы элемента */
+    /*cursor: pointer;*/ /* Тип курсора при наведение */
+    transition: 0.3s; /* transition позволяет делать плавные переходы между двумя значениями какого-либо CSS свойства */
+}
+.form_button_panel_all_task:focus,
+.form_button_panel_all_task:hover{
+    background-color: rgb(148, 90, 236); /* RGBA Цвет фона и значение прозрачности. */
+}
+
+/*.form_button_index {*/
+/*    padding: 50px 50px;*/
+/*    border: none; !* Без границы блока. *!*/
+/*    border-radius: 5px; !* Радиус закругления *!*/
+/*    font-family: Georgia, Times, serif;*/
+/*    letter-spacing: 1px;*/
+/*    font-size: 14px;*/
+/*    color :#fff ; !* Цвет текста *!*/
+/*    background-color: #0071f0; !* Цвет фона *!*/
+/*    outline: none; !* Внешней границы элемента *!*/
+/*    cursor: pointer; !* Тип курсора при наведение *!*/
+/*    transition: 0.3s; !* transition позволяет делать плавные переходы между двумя значениями какого-либо CSS свойства *!*/
+/*}*/
+/*.form_button_index:focus,*/
+/*.form_button_index:hover{*/
+/*    background-color: rgba(0, 113, 240, 0.7); !* RGBA Цвет фона и значение прозрачности. *!*/
+/*}*/
 
 .form_group {
     position: relative; /* Положение элемента устанавливается относительно его исходного места. */
@@ -136,11 +233,6 @@ table, th, td {
     transition: 0.3s;
     font-family: Georgia, Times, serif;
     left: 0;
-}
-
-.form_button:focus,
-.form_button:hover{
-    background-color: rgba(0, 113, 240, 0.7); /* RGBA Цвет фона и значение прозрачности. */
 }
 
 .form_input:focus {

@@ -12,20 +12,20 @@
         <h1 class="form_title">Вход в систему</h1>
         <div class="form_group">
             <input class="form_input" name="username" type="text" placeholder=" " autofocus="true"/>
-            <label class="form_label">Username</label>
+            <label class="form_label">Логин</label>
         </div>
         <div class="form_group">
             <input  class="form_input" name="password" type="password" placeholder=" "/>
-            <label class="form_label">Password</label>
+            <label class="form_label">Пароль</label>
         </div>
-        <div>
-            <button class="form_button" type="submit">Log In</button>
+        <div class="form_group">
+            <button class="form_button" type="submit">Войти</button>
         </div>
 
         <div th:if="${param.error}">
             Invalid username and password.
         </div>
-        <div>
+        <div class="form_group">
             <h4><a href="/registration">Зарегистрироваться</a></h4>
         </div>
 

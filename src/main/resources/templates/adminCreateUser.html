@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link th:href="@{/style.css}" rel="stylesheet" href="../static/style.css"/>
+    <title>Создать пользователя</title>
+</head>
+<body class="login">
+
+<form class="form" action="/admin/registration" method="post" th:object="${userForm}">
+    <h1 class="form_title">Создать пользователя</h1>
+    <div class="form_group">
+        <input class="form_input" type="text" id="username" placeholder=" " autofocus="true" th:field="*{username}" />
+        <label class="form_label" for="username">Логин:</label>
+    </div>
+    <div class="form_group">
+        <input class="form_input" type="text" id="firstname" placeholder=" " th:field="*{firstName}" />
+        <label class="form_label" for="firstname">Имя:</label>
+    </div>
+    <div class="form_group">
+        <input class="form_input" type="text" id="lastname" placeholder=" " th:field="*{lastName}" />
+        <label class="form_label" for="lastname">Фамилия:</label>
+    </div>
+    <div class="form_group">
+        <input class="form_input" type="password" id="password" placeholder=" " th:field="*{password}" />
+        <label class="form_label" for="password">Пароль:</label>
+    </div>
+    <div class="form_group">
+        <input class="form_input" type="password" id="passwordConfirm" placeholder=" " th:field="*{passwordConfirm}" />
+        <label class="form_label" for="passwordConfirm">Повторить пароль:</label>
+    </div>
+
+    <div th:if="${#fields.hasErrors('password') || #fields.hasErrors('passwordConfirm')}">
+        <p class="error" th:errors="*{password}"></p>
+    </div>
+
+    <div>
+        <button class="form_button" type="submit">Создать</button>
+    </div>
+
+    <div th:if="${passwordError != null}">
+        <p class="error" th:text="${passwordError}"></p>
+    </div>
+    <div th:if="${usernameError != null}">
+        <p class="error" th:text="${usernameError}"></p> </div>
+</form>
+
+<h4><a href="/admin">Панель администратора</a></h4>
+<h4><a href="/">Главная страница</a></h4>
+</body>
+</html>
