@@ -1,7 +1,7 @@
-package ems_project_2023.repository;
+package ems_project_2023.dao.repository;
 
-import ems_project_2023.dao.entity.Group;
 import ems_project_2023.dao.entity.User;
+import ems_project_2023.dao.entity.Group;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

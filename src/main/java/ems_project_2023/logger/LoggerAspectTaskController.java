@@ -18,7 +18,7 @@ public class LoggerAspectTaskController {
 
     public LoggerAspectTaskController() throws IOException {}
 
-    @Pointcut("execution(* ru.sberbank.jd..java_reboot_ems_project_2023.controller.TaskController.*(..))")
+    @Pointcut("execution(*  ems_project_2023.controller.TaskController.*(..))")
     public void taskRestControllerPointcut() {}
 
     @Before("taskRestControllerPointcut()")

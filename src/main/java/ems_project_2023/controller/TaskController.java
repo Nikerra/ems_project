@@ -15,7 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import ems_project_2023.repository.UserRepository;
+import ems_project_2023.dao.repository.UserRepository;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -205,7 +205,7 @@ public class TaskController {
     public String tasksToCheck(@ModelAttribute("res_id") Boolean taskResp , @RequestParam Long id, Model model) {
         TaskResponse taskRespons = taskResponseService.findByTaskId(id);
         taskRespons.setResult(taskResp);
-        model.addAttribute("taskResponseResultNull", taskRespons.getUser().getFirstName());
+        model.addAttribute("taskResponseResultNull", taskRespons.getUser().getName());
         taskResponseService.save(taskRespons);
         return "redirect:/teacher/tasksToCheck";
     }

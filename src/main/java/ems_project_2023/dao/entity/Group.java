@@ -14,7 +14,10 @@ public class Group {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JoinColumn(name = "id")
     private Long id;
+
+    @JoinColumn(name = "name")
     private String name;
 
     @OneToMany(mappedBy="groupUser")

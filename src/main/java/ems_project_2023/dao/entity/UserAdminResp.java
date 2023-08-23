@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Table(name = "userresp")
+@Table(name = "user_resp")
 public class UserAdminResp {
 
         @Id
@@ -20,7 +20,9 @@ public class UserAdminResp {
         private Long id;
 
         private String text;
+
         private Boolean result;
+
         @ManyToOne(fetch = FetchType.EAGER)
         @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
         private User user;
@@ -28,7 +30,6 @@ public class UserAdminResp {
         @ManyToOne(fetch = FetchType.EAGER)
         @JoinColumn(name = "group_id", referencedColumnName = "id", nullable = false)
         private Group group;
-
 
 }
 

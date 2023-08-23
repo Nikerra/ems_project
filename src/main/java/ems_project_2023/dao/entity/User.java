@@ -11,39 +11,39 @@ import javax.validation.constraints.Size;
 import java.util.*;
 
 
-@Getter
-@Setter
-@EqualsAndHashCode
-@ToString
-@RequiredArgsConstructor
+@Data
 @Entity
-@Table(name = "users")
+@Table(name = "user", schema = "public")
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
+
     @NotBlank
     @Size(min=2, max=500, message = "Не меньше 2 знаков")
-    private String username;
+    @Column(name = "name")
+    private String name;
+
     @NotBlank
     @Size(min=2, max=500, message = "Не меньше 2 знаков")
+    @Column(name = "password")
     private String password;
+
     @Transient
     private String passwordConfirm;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
+    @JoinColumn(name = "roleid")
     private Role role;
 
     @ManyToOne
-    @JoinColumn (name="group_id")
+    @JoinColumn (name="groupid")
     private Group groupUser;
-    private String firstName;
-    private String lastName;
-
 
     @Override
     public String getUsername() {
-        return username;
+        return name;
     }
 
     @Override

@@ -6,20 +6,22 @@ import javax.persistence.*;
 
 @Entity
 @Data
-@Table(name = "tasksresp")
+@Table(name = "task_resp")
 public class TaskResponse {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String answer;
+
     private Boolean result;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "task_id", referencedColumnName = "id")
     private Task task;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 

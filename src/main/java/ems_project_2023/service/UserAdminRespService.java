@@ -3,7 +3,7 @@ package ems_project_2023.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ems_project_2023.dao.entity.UserAdminResp;
-import ems_project_2023.repository.UserAdminRespRepository;
+import ems_project_2023.dao.repository.UserAdminRespRepository;
 
 
 import java.util.List;

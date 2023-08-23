@@ -1,7 +1,7 @@
-package ems_project_2023.repository;
+package ems_project_2023.dao.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import ems_project_2023.dao.entity.UserAdminResp;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 

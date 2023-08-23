@@ -1,13 +1,13 @@
-#version: '3.8'
-#services:
-#  db:
-#    image: postgres
-#    volumes:
-#      - C:\studyAndWork\data:/vat/lib/postgresql/data
-#    environment:
-#      POSTGRES_PASSWORD: hello
-#    ports:
-#      - '9000:5432'
+version: '3.8'
+services:
+  db:
+    image: postgres
+    volumes:
+      - C:\studyAndWork\ems_project\db\postgres\data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: 123456
+    ports:
+      - '8082:5432'
 #
 #  book-service:
 #    image:

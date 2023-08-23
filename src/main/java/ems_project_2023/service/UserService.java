@@ -1,6 +1,6 @@
 package ems_project_2023.service;
 
-import ems_project_2023.repository.TaskRepository;
+import ems_project_2023.dao.repository.TaskRepository;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,9 +12,9 @@ import ems_project_2023.dao.entity.Group;
 import ems_project_2023.dao.entity.Role;
 import ems_project_2023.dao.entity.TaskResponse;
 import ems_project_2023.dao.entity.User;
-import ems_project_2023.repository.RoleRepository;
-import ems_project_2023.repository.TaskResponseRepository;
-import ems_project_2023.repository.UserRepository;
+import ems_project_2023.dao.repository.RoleRepository;
+import ems_project_2023.dao.repository.TaskResponseRepository;
+import ems_project_2023.dao.repository.UserRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -35,7 +35,7 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
+        User user = userRepository.findByName(username);
         if (user == null) {
             throw new UsernameNotFoundException("User= " + user + " not found");
         }
@@ -57,7 +57,7 @@ public class UserService implements UserDetailsService {
      * @return
      */
     public boolean saveUser(User user) {
-        User userFromDB = userRepository.findByUsername(user.getUsername());
+        User userFromDB = userRepository.findByName(user.getUsername());
         System.out.println("USER registration=" + user);
         if (userFromDB != null) {
             return false;
@@ -98,7 +98,7 @@ public class UserService implements UserDetailsService {
     }
 
     public User findUserByUsername(String username) {
-        return userRepository.findByUsername(username);
+        return userRepository.findByName(username);
     }
 
     public List<User> getUsersRoleTeacher() {

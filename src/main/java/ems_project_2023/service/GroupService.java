@@ -1,13 +1,13 @@
 package ems_project_2023.service;
 
-import ems_project_2023.repository.TaskRepository;
+import ems_project_2023.dao.repository.TaskRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ems_project_2023.dao.entity.Group;
 import ems_project_2023.dao.entity.Task;
 import ems_project_2023.dao.entity.User;
-import ems_project_2023.repository.GroupRepository;
-import ems_project_2023.repository.UserRepository;
+import ems_project_2023.dao.repository.GroupRepository;
+import ems_project_2023.dao.repository.UserRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;

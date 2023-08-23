@@ -47,7 +47,7 @@
         <td th:text="${taskResp.id}"></td>
         <td th:text="${taskResp.task.name}"></td>
         <td th:text="${taskResp.answer}"></td>
-        <td th:text="${taskResp.user.firstName + ' ' + taskResp.user.lastName}"></td>
+        <td th:text="${taskResp.user.name}"></td>
         <td th:text="${taskResp.user.groupUser.name}"></td>
         <td th:text="${taskResp.result}" th:style="${taskResp.result == true ? 'color:green' : taskResp.result == false ? 'color:red' : ''}"></td>
 
@@ -82,8 +82,7 @@
         <td th:text="${taskResp.id}"></td>
         <td th:text="${taskResp.task.name}"></td>
         <td th:text="${taskResp.answer}"></td>
-        <td th:text="${taskResp.user.firstName + ' ' + taskResp.user.lastName}"></td>
-        <!--        <td th:text="${taskResp.user.groupUser.name}"></td>-->
+        <td th:text="${taskResp.user.name}"></td>
         <td th:text="${taskResp.result}" th:style="${taskResp.result == true ? 'color:green' : taskResp.result == false ? 'color:red' : ''}"></td>
 
         <td>

@@ -12,16 +12,8 @@
         <h1 class="form_title">Регистрация</h1>
 
         <div class="form_group">
-            <input class="form_input" type="text" id="username" placeholder=" " autofocus="true" th:field="*{username}" />
-            <label class="form_label" for="username">Логин:</label>
-        </div>
-        <div class="form_group">
-            <input class="form_input" type="text" id="firstname" placeholder=" " th:field="*{firstName}" />
-            <label class="form_label" for="firstname">Имя:</label>
-        </div>
-        <div class="form_group">
-            <input class="form_input" type="text" id="lastname" placeholder=" " th:field="*{lastName}" />
-            <label class="form_label" for="lastname">Фамилия:</label>
+            <input class="form_input" type="text" id="name" placeholder=" " autofocus="true" th:field="*{name}" />
+            <label class="form_label" for="name">Логин:</label>
         </div>
         <div class="form_group">
             <input class="form_input" type="password" id="password" placeholder=" " th:field="*{password}" />
@@ -44,8 +36,8 @@
         <div th:if="${passwordError != null}">
             <p class="error" th:text="${passwordError}"></p>
         </div>
-        <div th:if="${usernameError != null}">
-            <p class="error" th:text="${usernameError}"></p> </div>
+        <div th:if="${nameError != null}">
+            <p class="error" th:text="${nameError}"></p> </div>
 
         <h4><a href="/">Назад</a></h4>
 
