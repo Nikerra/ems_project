@@ -7,7 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import ems_project_2023.dao.entity.User;
-import ems_project_2023.service.UserService;
+import ems_project_2023.UserService;
 
 import javax.validation.Valid;
 
@@ -39,6 +39,7 @@ public class RegistrationController {
     public String addUser(@ModelAttribute("userForm") @Valid User userForm, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
+            System.out.println("bindingResult=" + bindingResult);
             return "registration";
         }
         if (!userForm.getPassword().equals(userForm.getPasswordConfirm())){

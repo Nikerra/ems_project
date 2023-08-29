@@ -21,7 +21,7 @@ public class HandleExceptionController {
         modelAndView.addObject("error", exception.getFieldError());
         modelAndView.setViewName("error");
         return modelAndView;
-        }
+    }
 
     @ExceptionHandler(value = BindException.class)
     public ModelAndView handleBindException(BindException exception) {

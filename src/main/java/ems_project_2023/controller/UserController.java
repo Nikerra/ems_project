@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ems_project_2023.dao.entity.Group;
 import ems_project_2023.dao.entity.User;
 import ems_project_2023.dao.entity.UserAdminResp;
-import ems_project_2023.service.GroupService;
-import ems_project_2023.service.UserAdminRespService;
+import ems_project_2023.GroupService;
+import ems_project_2023.UserAdminRespService;
 
 import java.util.List;
 
@@ -45,18 +45,13 @@ public class UserController {
     public String addUserAdminResp(@AuthenticationPrincipal UserDetails currentUser,
                                    @RequestParam Long group,
                                    @RequestParam String text) {
+
         User user = (User) currentUser;
-        List<UserAdminResp> allRespUser = userAdminRespService.getUserAdminRespByUser(user.getId());
-        if(allRespUser.size() == 0) {
-            UserAdminResp userAdminResp = new UserAdminResp();
-            userAdminResp.setUser(user);
-            userAdminResp.setGroup(groupService.getGroupById(group));
-            userAdminResp.setText(text);
-            userAdminRespService.save(userAdminResp);
-            return "redirect:/user";
-        }
-
-
+        UserAdminResp userAdminResp = new UserAdminResp();
+        userAdminResp.setUser(user);
+        userAdminResp.setGroup(groupService.getGroupById(group));
+        userAdminResp.setText(text);
+        userAdminRespService.save(userAdminResp);
         return "redirect:/user";
     }
 

@@ -8,14 +8,13 @@ services:
       POSTGRES_PASSWORD: 123456
     ports:
       - '8082:5432'
-#
-#  book-service:
-#    image:
-#      javareboot_module14_image_20
-#    environment:
-#      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/postgres
-#    ports:
-#      - '8081:8081'
-#
-#    depends_on:
-#      - db
+
+  ems-service:
+    image:
+      ems_project_2023
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/postgres
+    ports:
+      - '8081:8081'
+    depends_on:
+      - db

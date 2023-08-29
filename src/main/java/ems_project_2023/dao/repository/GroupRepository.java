@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
 public interface GroupRepository extends JpaRepository<Group, Long> {
     Group getGroupById(Long groupId);
     List<Group> findAllByUsers(User user);

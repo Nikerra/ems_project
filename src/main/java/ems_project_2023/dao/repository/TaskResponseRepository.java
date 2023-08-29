@@ -9,7 +9,6 @@ import ems_project_2023.dao.entity.User;
 
 import java.util.List;
 
-@Repository
 public interface TaskResponseRepository extends JpaRepository<TaskResponse, Long> {
     TaskResponse findUserById(Long id);
     TaskResponse findTaskResponseByTaskAndUser(Task task, User currentUser);

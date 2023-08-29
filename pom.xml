@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>ru.sberbank.jd</groupId>
-	<artifactId>java_reboot_ems_project_2023</artifactId>
+	<artifactId>ems_project_2023</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>java_reboot_ems_project_2023</name>
 	<description>ems_project</description>

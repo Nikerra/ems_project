@@ -4,9 +4,10 @@ import ems_project_2023.dao.entity.Group;
 import ems_project_2023.dao.entity.Task;
 import ems_project_2023.dao.entity.TaskResponse;
 import ems_project_2023.dao.entity.User;
-import ems_project_2023.service.GroupService;
-import ems_project_2023.service.TaskResponseService;
-import ems_project_2023.service.TaskService;
+import ems_project_2023.GroupService;
+import ems_project_2023.TaskResponseService;
+import ems_project_2023.TaskService;
+import ems_project_2023.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,10 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import ems_project_2023.dao.repository.UserRepository;
-
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -33,7 +31,7 @@ public class TaskController {
 
     private final TaskResponseService taskResponseService;
 
-    private final UserRepository userRepository;
+    private final UserService userService;
 
 
     /**
@@ -116,16 +114,10 @@ public class TaskController {
         List<Task> allTask = taskService.findAll();
         List<Task> activeTask = taskService.findAllActive();
         List<TaskResponse> taskResponse =taskResponseService.getAllTasks();
-        User user = (User) currentUser;
-        List<User> allUser = userRepository.findAll();
-        List<User> allTeacher = new ArrayList<>();
-        for (User users : allUser) {
-            if (users.getRole().getName().equals("ROLE_TEACHER")) {
-                allTeacher.add(users);
-            }
-        }
+        List<User> allTeacher = userService.getUsersRoleTeacher();
+
         model.addAttribute("allTeacher", allTeacher);
-        model.addAttribute("currentUser", user);
+        model.addAttribute("currentUser", currentUser);
         model.addAttribute("activeTask", activeTask);
         model.addAttribute("allTask", allTask);
         model.addAttribute("taskResponse", taskResponse);
@@ -187,8 +179,9 @@ public class TaskController {
         List<Task> allTask = taskService.findAll();
         List<Task> activeTask = taskService.findAllActive();
         List<TaskResponse> taskResponse =taskResponseService.getAllTasks();
-        User user = (User) currentUser;
-        model.addAttribute("currentUser", user);
+//        User user = (User) currentUser;
+
+        model.addAttribute("currentUser", currentUser);
         model.addAttribute("activeTask", activeTask);
         model.addAttribute("allTask", allTask);
         model.addAttribute("taskResponse", taskResponse);
@@ -203,10 +196,10 @@ public class TaskController {
      */
     @PostMapping("/tasksToCheck")
     public String tasksToCheck(@ModelAttribute("res_id") Boolean taskResp , @RequestParam Long id, Model model) {
-        TaskResponse taskRespons = taskResponseService.findByTaskId(id);
-        taskRespons.setResult(taskResp);
-        model.addAttribute("taskResponseResultNull", taskRespons.getUser().getName());
-        taskResponseService.save(taskRespons);
+        TaskResponse taskResponse = taskResponseService.findByTaskId(id);
+        taskResponse.setResult(taskResp);
+        model.addAttribute("taskResponseResultNull", taskResponse.getUser().getUsername());
+        taskResponseService.save(taskResponse);
         return "redirect:/teacher/tasksToCheck";
     }
 }

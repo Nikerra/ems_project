@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ems_project_2023.dao.entity.Group;
 import ems_project_2023.dao.entity.User;
-import ems_project_2023.service.GroupService;
+import ems_project_2023.GroupService;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -64,7 +64,7 @@ public class GroupController {
      */
     @PostMapping("/groupPanel/delete")
     public String deleteGroup(@Valid @ModelAttribute("group") Group group, BindingResult bindingResult,
-                              Model model) {
+                            Model model) {
         groupService.deleteGroup(group.getId());
         return "redirect:/teacher/groupPanel?";
     }

@@ -11,8 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import ems_project_2023.service.TaskResponseService;
-import ems_project_2023.service.TaskService;
+import ems_project_2023.TaskResponseService;
+import ems_project_2023.TaskService;
 import java.util.List;
 
 @Controller

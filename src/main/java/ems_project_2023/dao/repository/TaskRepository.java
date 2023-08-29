@@ -7,7 +7,6 @@ import ems_project_2023.dao.entity.User;
 
 import java.util.List;
 
-@Repository
 public interface TaskRepository extends JpaRepository<Task, Long> {
 
     Task findTaskById(Long id);

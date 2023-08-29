@@ -11,9 +11,9 @@ import ems_project_2023.dao.entity.Group;
 import ems_project_2023.dao.entity.Role;
 import ems_project_2023.dao.entity.User;
 import ems_project_2023.dao.entity.UserAdminResp;
-import ems_project_2023.service.GroupService;
-import ems_project_2023.service.UserAdminRespService;
-import ems_project_2023.service.UserService;
+import ems_project_2023.GroupService;
+import ems_project_2023.UserAdminRespService;
+import ems_project_2023.UserService;
 
 
 import javax.validation.Valid;
@@ -78,8 +78,8 @@ public class AdminController {
      */
     @PostMapping("/update")
     public String updateUser( @RequestParam("id") Long userId,
-                              @ModelAttribute("roleId") Long roleId,
-                              @ModelAttribute("groupId") Long groupId) {
+                            @ModelAttribute("roleId") Long roleId,
+                            @ModelAttribute("groupId") Long groupId) {
         User user =userService.findUserById(userId);
         Role role = userService.findRoleById(roleId);
         Group group = groupService.getGroupById(groupId);
