@@ -19,6 +19,7 @@ import org.springframework.http.MediaType;
 
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
@@ -50,7 +51,9 @@ public class TaskControllerTest {
         public void taskPanel() {
                 MockMvc mockMvc = standaloneSetup(new TeacherController())
                         .defaultRequest(get("/teacher/taskPanel").accept(MediaType.APPLICATION_JSON))
+                        .alwaysExpect(view().name("taskPanel"))
                         .alwaysExpect(status().isOk())
+                        .alwaysExpect(content().string(containsString("Task")))
                         .alwaysExpect(content().contentType("application/json;charset=UTF-8"))
                         .build();
         }
