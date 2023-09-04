@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ems_project_2023.dao.entity.Group;
 import ems_project_2023.dao.entity.User;
 import ems_project_2023.dao.entity.UserAdminResp;
-import ems_project_2023.GroupService;
-import ems_project_2023.UserAdminRespService;
+import ems_project_2023.service.GroupService;
+import ems_project_2023.service.UserAdminRespService;
 
 import java.util.List;
 

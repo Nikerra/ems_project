@@ -1,4 +1,4 @@
-package ems_project_2023;
+package ems_project_2023.service;
 
 import ems_project_2023.dao.repository.TaskRepository;
 import lombok.RequiredArgsConstructor;

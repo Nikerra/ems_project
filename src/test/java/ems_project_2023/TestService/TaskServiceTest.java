@@ -1,6 +1,6 @@
 package ems_project_2023.TestService;
 
-import ems_project_2023.TaskService;
+import ems_project_2023.service.TaskService;
 import ems_project_2023.dao.entity.Group;
 import ems_project_2023.dao.entity.Task;
 import ems_project_2023.dao.entity.User;

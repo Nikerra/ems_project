@@ -3,9 +3,9 @@ package ems_project_2023.TestController;
 
 import ems_project_2023.config.SecurityConfig;
 import ems_project_2023.controller.TeacherController;
-import ems_project_2023.GroupService;
-import ems_project_2023.TaskResponseService;
-import ems_project_2023.TaskService;
+import ems_project_2023.service.GroupService;
+import ems_project_2023.service.TaskResponseService;
+import ems_project_2023.service.TaskService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,14 +1,13 @@
-package ru.sberbank.jd.java_reboot_ems_project_2023.service;
+package ems_project_2023.service;
 
-
+import ems_project_2023.dao.repository.TaskRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.sberbank.jd.java_reboot_ems_project_2023.dao.entity.Group;
-import ru.sberbank.jd.java_reboot_ems_project_2023.dao.entity.Task;
-import ru.sberbank.jd.java_reboot_ems_project_2023.dao.entity.User;
-import ru.sberbank.jd.java_reboot_ems_project_2023.dao.repository.GroupRepository;
-import ru.sberbank.jd.java_reboot_ems_project_2023.dao.repository.TaskRepository;
-import ru.sberbank.jd.java_reboot_ems_project_2023.dao.repository.UserRepository;
+import ems_project_2023.dao.entity.Group;
+import ems_project_2023.dao.entity.Task;
+import ems_project_2023.dao.entity.User;
+import ems_project_2023.dao.repository.GroupRepository;
+import ems_project_2023.dao.repository.UserRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;

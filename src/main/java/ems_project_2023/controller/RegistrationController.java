@@ -7,7 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import ems_project_2023.dao.entity.User;
-import ems_project_2023.UserService;
+import ems_project_2023.service.UserService;
 
 import javax.validation.Valid;
 

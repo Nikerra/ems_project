@@ -1,4 +1,4 @@
-package ems_project_2023;
+package ems_project_2023.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
